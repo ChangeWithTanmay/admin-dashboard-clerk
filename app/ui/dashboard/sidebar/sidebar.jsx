@@ -101,6 +101,9 @@ const Sidebar = () => {
                     )
                 )}
             </ul>
+            <button className='p-3 gap-2.5 my-1 mx-0 flex items-center rounded-[10px] bg-none text-text border-none cursor-pointer w-full hover:bg-[#2e374a]'>
+                <MdLogout/>
+                Logout</button>
         </div>
     )
 }

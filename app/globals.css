@@ -10,6 +10,8 @@
 @theme inline {
   --color-bg: var(--bg);
   --color-bgSoft: var(--bgSoft);
+  --color-text: var(--text);
+  --color-textSoft: var(--textSoft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
