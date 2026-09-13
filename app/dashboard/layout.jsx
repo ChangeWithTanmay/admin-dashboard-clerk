@@ -4,10 +4,10 @@ import Sidebar from "../ui/dashboard/sidebar/sidebar";
 export default function Layout({ children }) {
     return (
         <div className="flex">
-            <div className="flex-1 bg-bgSoft p-20">
+            <div className="flex-1 bg-bgSoft p-5">
                 <Sidebar />
             </div>
-            <div className="flex-4 p-20">
+            <div className="flex-4 p-5">
                 <Navbar />
                 {children}
             </div>
