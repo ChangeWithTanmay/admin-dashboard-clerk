@@ -6,7 +6,7 @@ import React from 'react'
 
 const UserPage = () => {
   return (
-    <div className="bg-bgSoft p-[20px] rounded-[10px] mt-5">
+    <div className="bg-bgSoft p-5 rounded-[10px] mt-5">
       {/* Top component */}
       <div className="flex items-center justify-between">
         <Search placeholder="Search for a user.." />
@@ -31,7 +31,7 @@ const UserPage = () => {
           <tr>
             <td>
               <div className="flex items-center gap-1.5">
-                <Image src={"/avater2.jpg"} alt='' width={40} height={40} className='rounded-lg object-cover' />
+                <Image src={"/avater2.jpg"} alt='' width={40} height={40} className='w-10 h-10 rounded-lg object-cover' />
                 John Doe
               </div>
             </td>
