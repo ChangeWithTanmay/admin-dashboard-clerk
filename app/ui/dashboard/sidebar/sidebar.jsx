@@ -79,7 +79,7 @@ const menuItem = [
 
 const Sidebar = () => {
     return (
-        <div className='sticky top-40'>
+        <div className='sticky top-5'>
 
             {/* User Icon & Name */}
             <div className='flex items-center gap-5 mb-5 '>
