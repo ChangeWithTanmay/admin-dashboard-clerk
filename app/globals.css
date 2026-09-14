@@ -55,3 +55,19 @@ td {
 .cancelled {
   background-color: #f7737375;
 }
+
+.button{
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+}
+
+.view{
+  background-color: teal;
+}
+
+.delete{
+  background-color: crimson;
+}

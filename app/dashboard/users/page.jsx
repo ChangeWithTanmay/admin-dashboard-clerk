@@ -1,9 +1,58 @@
+import Pagination from '@/app/ui/dashboard/pagination/pagination'
+import Search from '@/app/ui/dashboard/search/search'
+import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const UserPage = () => {
   return (
-    <div>
-      UserPage
+    <div className="bg-bgSoft p-[20px] rounded-[10px] mt-5">
+      {/* Top component */}
+      <div className="flex items-center justify-between">
+        <Search placeholder="Search for a user.." />
+        <Link href="/dashboard/users/add">
+          <button className='p-2.5 bg-[#5d57c9] text-text border-none rounded-[5px] cursor-pointer'>Add New</button>
+        </Link>
+      </div>
+
+      <table className="w-full p-2.5">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Created At</td>
+            <td>Role</td>
+            <td>Status</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+              <div className="flex items-center gap-1.5">
+                <Image src={"/avater2.jpg"} alt='' width={40} height={40} className='rounded-lg object-cover' />
+                John Doe
+              </div>
+            </td>
+            <td>johndoe@xyz.com</td>
+            <td>13.02.2026</td>
+            <td>Admin</td>
+            <td>Active</td>
+            <td>
+              <div className="flex gap-2.5">
+                <Link href="/">
+                  <button className='button view'>View</button>
+                </Link>
+                <Link href="/">
+                  <button className='button delete'>Delete</button>
+                </Link>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <Pagination/>
     </div>
   )
 }
