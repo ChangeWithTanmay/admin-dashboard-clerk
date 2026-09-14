@@ -39,10 +39,21 @@ const Chart = () => {
           }}
         >
 
-          <XAxis dataKey="name" />
-          <YAxis width="auto" />
+          {/* <XAxis dataKey="name" />
+          <YAxis width="auto" /> */}
+          <XAxis
+            dataKey="name"
+            stroke="#94A3B8" 
+            tick={{ fill: "#E2E8F0", fontSize: 14 }}
+          />
 
-          <Tooltip contentStyle={{background:"#151c2c", border:"none", borderRadius: "8px" }}/>
+          <YAxis
+            width="auto"
+            stroke="#94A3B8"
+            tick={{ fill: "#E2E8F0", fontSize: 14 }}
+          />
+
+          <Tooltip contentStyle={{ background: "#151c2c", border: "none", borderRadius: "8px" }} />
           <Legend />
 
           <Line

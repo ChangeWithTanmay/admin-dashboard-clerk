@@ -20,7 +20,7 @@ const page = () => {
         <Chart/>
 
       </div>
-      <div className="c">
+      <div className="flex-1">
         <Rightbar/>
       </div>
     </div>
