@@ -6,14 +6,7 @@ import { MdNotifications, MdOutlineChat, MdPublic, MdSearch } from 'react-icons/
 const Navbar = () => {
     const pathname = usePathname()
     return (
-        <div className='
-         flex 
-         items-center 
-         justify-between
-         p-3
-         rounded-[10px]
-         bg-bgSoft
-         '>
+        <div className='flex items-center justify-between p-3 rounded-[10px] bg-bgSoft'>
             <div className='text-textSoft font-bold capitalize'>{pathname.split('/').pop()}</div>
 
             <div className="flex items-center gap-5">

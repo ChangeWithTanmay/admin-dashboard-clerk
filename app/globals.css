@@ -30,3 +30,27 @@ body {
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+td {
+  padding: 10px;
+} 
+
+.status {
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  display: inline-block;
+  color: white;
+}
+
+.pending{
+  background-color: #f7cb7375;
+}
+
+.done{
+  background-color: #afd6ee75;
+}
+
+.cancelled {
+  background-color: #f7737375;
+}
