@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from '@/app/ui/dashboard/products/add/addProduct.model.css'
 
 const AddProduct = () => {
   return (

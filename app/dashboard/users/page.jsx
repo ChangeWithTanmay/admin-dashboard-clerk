@@ -41,7 +41,7 @@ const UserPage = () => {
             <td>Active</td>
             <td>
               <div className="flex gap-2.5">
-                <Link href="/">
+                <Link href="/dashboard/users/id">
                   <button className='button view'>View</button>
                 </Link>
                 <Link href="/">

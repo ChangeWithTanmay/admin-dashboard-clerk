@@ -72,34 +72,3 @@ td {
   background-color: crimson;
 }
 
-form input, form textarea, form select {
-  padding: 20px;
-  background-color: var(--bgSoft);
-  color: var(--text);
-  border: 2px solid #2e374a;
-  border-radius: 5px;
-  margin-bottom: 30px;
-}
-
-form input, form select {
-  width: 45%;
-}
-
-form select option{
-  background-color: var(--bgSoft);
-}
-
-form textarea {
-  width: 100%;
-}
-
-form button {
-  width: 100%;
-  padding: 15px;
-  background-color: teal;
-  color: var(--text);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
