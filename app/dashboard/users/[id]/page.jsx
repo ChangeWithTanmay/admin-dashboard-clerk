@@ -7,8 +7,8 @@ const SingleUserPage = () => {
         <div className="flex gap-5">
             {/* Info container */}
             <div className="flex-1 bg-bgSoft p-5 rounded-[10px] mt-5 font-bold text-textSoft h-max">
-                <div className="w-full h-75 relative rounded-2xl overflow-hidden">
-                    <Image src={"/image.png"} alt='' fill />
+                <div className="w-72 h-72 relative rounded-2xl overflow-hidden">
+                    <Image src={"/image.png"} alt='' fill  />
                 </div>
 
                 John Doe
