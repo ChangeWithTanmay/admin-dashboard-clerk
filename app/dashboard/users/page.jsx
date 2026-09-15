@@ -1,10 +1,14 @@
+import { fetchUsers } from '@/app/lib/data'
 import Pagination from '@/app/ui/dashboard/pagination/pagination'
 import Search from '@/app/ui/dashboard/search/search'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const UserPage = () => {
+const UserPage = async () => {
+
+  const users = await fetchUsers()
+
   return (
     <div className="bg-bgSoft p-5 rounded-[10px] mt-5">
       {/* Top component */}
@@ -28,31 +32,35 @@ const UserPage = () => {
         </thead>
 
         <tbody>
-          <tr>
-            <td>
-              <div className="flex items-center gap-1.5">
-                <Image src={"/avater2.jpg"} alt='' width={40} height={40} className='w-10 h-10 rounded-lg object-cover' />
-                John Doe
-              </div>
-            </td>
-            <td>johndoe@xyz.com</td>
-            <td>13.02.2026</td>
-            <td>Admin</td>
-            <td>Active</td>
-            <td>
-              <div className="flex gap-2.5">
-                <Link href="/dashboard/users/id">
-                  <button className='button view'>View</button>
-                </Link>
-                <Link href="/">
-                  <button className='button delete'>Delete</button>
-                </Link>
-              </div>
-            </td>
-          </tr>
+          {users.map(user => (
+            <tr key={user.id}>
+              <td>
+                <div className="flex items-center gap-1.5">
+                  <Image src={user.img || "/avater2.jpg"} alt='' width={40} height={40} className='w-10 h-10 rounded-lg object-cover' />
+                  {user.username}
+                </div>
+              </td>
+              <td>{user.email}</td>
+              
+              <td>{user.createdAt?.toString().slice(4, 16)}</td>
+
+              <td>{user.isAdmin ? "Admin" : "Client"}</td>
+              <td>{user.isActive ? "Active" : "Passive"}</td>
+              <td>
+                <div className="flex gap-2.5">
+                  <Link href={`/dashboard/users/${user.id}`}>
+                    <button className='button view'>View</button>
+                  </Link>
+                  <Link href="/">
+                    <button className='button delete'>Delete</button>
+                  </Link>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <Pagination/>
+      <Pagination />
     </div>
   )
 }

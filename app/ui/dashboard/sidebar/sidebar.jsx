@@ -83,7 +83,14 @@ const Sidebar = () => {
 
             {/* User Icon & Name */}
             <div className='flex items-center gap-5 mb-5 '>
-                <Image src={"/image.png"} alt='' width="50" height="50" className='rounded-xl object-cover'/>
+                <Image
+                    src={"/image.png"}
+                    alt='' width="50"
+                    height="50"
+                    loading="eager"
+                    className='rounded-xl object-cover'
+                />
+                
                 <div className='flex flex-col'>
                     <span className='font-medium'>Jhon Doe</span>
                     <span className='text-xs'>Administrator</span>
@@ -102,7 +109,7 @@ const Sidebar = () => {
                 )}
             </ul>
             <button className='p-3 gap-2.5 my-1 mx-0 flex items-center rounded-[10px] bg-none text-text border-none cursor-pointer w-full hover:bg-[#2e374a]'>
-                <MdLogout/>
+                <MdLogout />
                 Logout</button>
         </div>
     )
