@@ -1,10 +1,18 @@
+import { fetchProducts } from '@/app/lib/data'
 import Pagination from '@/app/ui/dashboard/pagination/pagination'
 import Search from '@/app/ui/dashboard/search/search'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const ProductPage = () => {
+const ProductPage = async ({searchParams}) => {
+
+  const params = await searchParams;
+  const q = params?.q || "";
+  const page = params?.page <= 0 ? 1 : params?.page || 1;
+
+  const { products, count } = await fetchProducts(q, page)
+
   return (
     <div className="bg-bgSoft p-5 rounded-[10px] mt-5">
       {/* Top component */}
@@ -21,24 +29,25 @@ const ProductPage = () => {
             <td>Title</td>
             <td>Description</td>
             <td>Price</td>
-            <td>Created at</td>
+            <td>Created At</td>
             <td>Stock</td>
             <td>Action</td>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
+          {products.map(product => (
+          <tr key={product?.id}>
             <td>
               <div className="flex items-center gap-1.5">
-                <Image src={"/avater2.jpg"} alt='' width={40} height={40} className='w-10 h-10 rounded-full object-cover' />
-                I-Phone 13
+                <Image src={ product?.img || "/avater2.jpg"} alt='' width={40} height={40} className='w-10 h-10 rounded-full object-cover' />
+                {product?.title || ""}
               </div>
             </td>
-            <td className='max-w-50 truncate'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eligendi suscipit facilis ratione, totam soluta nihil assumenda deleniti, commodi maiores reiciendis eos corporis sed temporibus dolorem natus laborum. Repellat, labore.</td>
-            <td>$123</td>
-            <td>Oct 29 2023</td>
-            <td>34</td>
+            <td className='max-w-50 truncate'>{product.desc || ""}</td>
+            <td>{`$${product?.price || 0}`}</td>
+            <td>{product?.createdAt?.toString().slice(4, 16)}</td>
+            <td>{product?.stock || 0}</td>
             <td>
               <div className="flex gap-2.5">
                 <Link href="/dashboard/products/test">
@@ -50,9 +59,10 @@ const ProductPage = () => {
               </div>
             </td>
           </tr>
+          ))}
         </tbody>
       </table>
-      <Pagination/>
+      <Pagination count={count} />
     </div>
   )
 }
