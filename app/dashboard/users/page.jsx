@@ -5,9 +5,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const UserPage = async () => {
+const UserPage = async ({searchParams}) => {
 
-  const users = await fetchUsers()
+  const params = await searchParams;
+  const q = params?.q || "";
+  const page = params?.page <=0 ? 1: params?.page || 1;
+
+  const {users, count} = await fetchUsers(q, page)
+
 
   return (
     <div className="bg-bgSoft p-5 rounded-[10px] mt-5">
@@ -60,7 +65,7 @@ const UserPage = async () => {
           ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={count}/>
     </div>
   )
 }
