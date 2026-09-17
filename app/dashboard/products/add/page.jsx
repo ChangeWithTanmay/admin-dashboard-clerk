@@ -1,10 +1,11 @@
 import React from 'react'
 import styles from '@/app/ui/dashboard/products/add/addProduct.model.css'
+import { addProduct } from '@/app/lib/actions'
 
 const AddProduct = () => {
   return (
     <div className="bg-bgSoft p-5 rounded-[10px] mt-5">
-      <form action="" className='flex flex-wrap justify-between'>
+      <form action={addProduct} className='flex flex-wrap justify-between'>
         <input type="text" placeholder='title' name="title" required />
         <select name="category" id="category">
           <option value="general">Choose a Category</option>
@@ -18,8 +19,8 @@ const AddProduct = () => {
         <input type="text" placeholder='Size' name='size' />
 
         <textarea
-          name="descri"
-          id="descri"
+          name="desc"
+          id="desc"
           rows="6"
           placeholder='Description'
         >
