@@ -50,7 +50,7 @@ const ProductPage = async ({searchParams}) => {
             <td>{product?.stock || 0}</td>
             <td>
               <div className="flex gap-2.5">
-                <Link href="/dashboard/products/test">
+                <Link href={`/dashboard/products/${product?.id}`}>
                   <button className='button view'>View</button>
                 </Link>
                 <Link href="/">
