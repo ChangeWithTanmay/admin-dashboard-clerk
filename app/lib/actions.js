@@ -66,12 +66,12 @@ export const deleteProduct = async (formData) => {
     "use server"
     // const username = formData.get("username")
     const { id } = Object.fromEntries(formData);
-    
+
     try {
         connectToDB();
 
         const delProduct = await Product.findByIdAndDelete(id)
-        
+
     } catch (error) {
         console.log(error)
         throw new Error("Faild to delete product.")
@@ -83,16 +83,81 @@ export const deleteProduct = async (formData) => {
 
 export const deleteUser = async (formData) => {
     "use server"
-    const {id} =  Object.fromEntries(formData);
+    const { id } = Object.fromEntries(formData);
 
     try {
         connectToDB();
         const delUser = await User.findByIdAndDelete(id)
-        
+
     } catch (error) {
         console.log(error)
         throw new Error("Faild to delete user.")
     }
 
     revalidatePath("/dashboard/products")
+}
+
+export const fetchUser = async (id) => {
+    "use server"
+
+    try {
+        connectToDB();
+        const user = await User.findById(id)
+
+        return user
+    } catch (error) {
+        console.log(error)
+        throw new Error("Faild to fetch user detils.")
+    }
+}
+
+export const updateUser = async (formData) => {
+    "use server"
+
+    const { id, username, email, password, phone, address, isAdmin, isActive } = Object.fromEntries(formData)
+
+    try {
+        connectToDB();
+
+        const updateFields = {
+            username, email, password, phone, address, isAdmin, isActive
+        }
+
+        Object.keys(updateFields).forEach(
+            (key) =>
+                (updateFields[key] === "" || updateFields[key] === undefined) &&
+                delete updateFields[key]
+        );
+
+        if (updateFields?.password) {
+            const salt = await bcrypt.genSalt(10);
+            const hashPassword = await bcrypt.hash(updateFields.password, salt);
+            updateFields.password = hashPassword
+        }
+
+
+        const user = await User.findByIdAndUpdate(id, updateFields)
+
+
+    } catch (error) {
+        console.log(error)
+        throw new Error("Faild to fetch user detils.")
+    }
+    revalidatePath("/dashboard/users")
+    redirect("/dashboard/users")
+}
+
+
+export const fetchProduct = async (id) => {
+    "use server"
+
+    try {
+        connectToDB();
+        const product = await Product.findById(id)
+        
+        return product
+    } catch (error) {
+        console.log(error)
+        throw new Error("Faild to fetch Product details")
+    }
 }
