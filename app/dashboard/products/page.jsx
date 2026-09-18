@@ -1,3 +1,4 @@
+import { deleteProduct } from '@/app/lib/actions'
 import { fetchProducts } from '@/app/lib/data'
 import Pagination from '@/app/ui/dashboard/pagination/pagination'
 import Search from '@/app/ui/dashboard/search/search'
@@ -5,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const ProductPage = async ({searchParams}) => {
+const ProductPage = async ({ searchParams }) => {
 
   const params = await searchParams;
   const q = params?.q || "";
@@ -37,28 +38,31 @@ const ProductPage = async ({searchParams}) => {
 
         <tbody>
           {products.map(product => (
-          <tr key={product?.id}>
-            <td>
-              <div className="flex items-center gap-1.5">
-                <Image src={ product?.img || "/avater2.jpg"} alt='' width={40} height={40} className='w-10 h-10 rounded-full object-cover' />
-                {product?.title || ""}
-              </div>
-            </td>
-            <td className='max-w-50 truncate'>{product.desc || ""}</td>
-            <td>{`$${product?.price || 0}`}</td>
-            <td>{product?.createdAt?.toString().slice(4, 16)}</td>
-            <td>{product?.stock || 0}</td>
-            <td>
-              <div className="flex gap-2.5">
-                <Link href={`/dashboard/products/${product?.id}`}>
-                  <button className='button view'>View</button>
-                </Link>
-                <Link href="/">
-                  <button className='button delete'>Delete</button>
-                </Link>
-              </div>
-            </td>
-          </tr>
+            <tr key={product?.id}>
+              <td>
+                <div className="flex items-center gap-1.5">
+                  <Image src={product?.img || "/avater2.jpg"} alt='' width={40} height={40} className='w-10 h-10 rounded-full object-cover' />
+                  {product?.title || ""}
+                </div>
+              </td>
+              <td className='max-w-50 truncate'>{product.desc || ""}</td>
+              <td>{`$${product?.price || 0}`}</td>
+              <td>{product?.createdAt?.toString().slice(4, 16)}</td>
+              <td>{product?.stock || 0}</td>
+              <td>
+                <div className="flex gap-2.5">
+                  <Link href={`/dashboard/products/${product?.id}`}>
+                    <button className='button view'>View</button>
+                  </Link>
+
+                  <form action={deleteProduct}>
+                    <input type="text" name="id" hidden value={product.id} readOnly/>
+                    <button className='button delete'>Delete</button>
+                  </form>
+
+                </div>
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>

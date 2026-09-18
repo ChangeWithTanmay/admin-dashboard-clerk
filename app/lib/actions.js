@@ -38,7 +38,7 @@ export const addUser = async (formData) => {
 export const addProduct = async (formData) => {
     "use server"
     // const username = formData.get("username")
-    const { title, category, price, stock, color, size,desc } = Object.fromEntries(formData);
+    const { title, category, price, stock, color, size, desc } = Object.fromEntries(formData);
 
     try {
         connectToDB();
@@ -57,6 +57,25 @@ export const addProduct = async (formData) => {
     } catch (error) {
         console.log(error)
         throw new Error("Faild to create product.")
+    }
+
+    revalidatePath("/dashboard/products")
+    redirect("/dashboard/products")
+}
+
+export const deleteProduct = async (formData) => {
+    "use server"
+    // const username = formData.get("username")
+    const { id } = Object.fromEntries(formData);
+    
+    try {
+        connectToDB();
+
+        const deletProduct = await Product.findByIdAndDelete(id)
+        
+    } catch (error) {
+        console.log(error)
+        throw new Error("Faild to delete product.")
     }
 
     revalidatePath("/dashboard/products")
