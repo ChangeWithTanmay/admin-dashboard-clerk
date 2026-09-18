@@ -1,3 +1,4 @@
+import { deleteUser } from '@/app/lib/actions'
 import { fetchUsers } from '@/app/lib/data'
 import Pagination from '@/app/ui/dashboard/pagination/pagination'
 import Search from '@/app/ui/dashboard/search/search'
@@ -5,13 +6,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const UserPage = async ({searchParams}) => {
+const UserPage = async ({ searchParams }) => {
 
   const params = await searchParams;
   const q = params?.q || "";
-  const page = params?.page <=0 ? 1: params?.page || 1;
+  const page = params?.page <= 0 ? 1 : params?.page || 1;
 
-  const {users, count} = await fetchUsers(q, page)
+  const { users, count } = await fetchUsers(q, page)
 
 
   return (
@@ -46,7 +47,7 @@ const UserPage = async ({searchParams}) => {
                 </div>
               </td>
               <td>{user.email}</td>
-              
+
               <td>{user.createdAt?.toString().slice(4, 16)}</td>
 
               <td>{user.isAdmin ? "Admin" : "Client"}</td>
@@ -56,16 +57,19 @@ const UserPage = async ({searchParams}) => {
                   <Link href={`/dashboard/users/${user.id}`}>
                     <button className='button view'>View</button>
                   </Link>
-                  <Link href="/">
+
+                  <form action={deleteUser}>
+                    <input type="text" readOnly value={user.id} name="id" hidden/>
                     <button className='button delete'>Delete</button>
-                  </Link>
+                  </form>
+
                 </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <Pagination count={count}/>
+      <Pagination count={count} />
     </div>
   )
 }
